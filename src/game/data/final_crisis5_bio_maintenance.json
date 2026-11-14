@@ -1,0 +1,64 @@
+{
+  "crisis_id": "C5_Microgravity_Isolation_And_Bio_Maintenance",
+  "sol_window": [23, 24, 25, 26],
+  "data_sources": [
+    "NASA OSDR (Open Science Data Repository - Musculoskeletal, Immune & Circadian Studies)"
+  ],
+  "nasa_source_data": {
+    "mars_gravity_fraction_of_earth": 0.38,
+    "sols_elapsed_on_mars": 23,
+    "daily_resistance_exercise_minutes": 45,
+    "circadian_blue_light_wavelength_nm": 480,
+    "closed_loop_plant_o2_boost_bars": 2
+  },
+  "decision_cards": [
+    {
+      "card_id": 1,
+      "card_name": "Full Recovery Protocol & Fitness Unit",
+      "cost_days": 4,
+      "power_cost_total": 2,
+      "oxygen_cost_total": 1,
+      "effects": {
+        "readiness_gain_with_unit": 3.0,
+        "readiness_gain_without_unit": 1.5,
+        "rivo_peak_fitness": true
+      },
+      "future_trap": "Makes Rover driving on Sol 27 fast and penalty-free! (Bonus depends on Mission 5 fitness unit)."
+    },
+    {
+      "card_id": 2,
+      "card_name": "Greenhouse Maintenance & Fresh Air Valves",
+      "cost_days": 4,
+      "power_cost_total": 0,
+      "oxygen_cost_total": 0,
+      "effects": {
+        "readiness_gain": 2,
+        "oxygen_gain": 2,
+        "rivo_peak_fitness": false
+      },
+      "unlock_condition": "active_crop_id != null",
+      "future_trap": "Locked if greenhouse is empty. Gives free oxygen and health boost."
+    },
+    {
+      "card_id": 3,
+      "card_name": "Quick Rest (No Exercise or Maintenance)",
+      "cost_days": 4,
+      "power_cost_total": 0,
+      "oxygen_cost_total": 0,
+      "effects": {
+        "readiness_loss": 2,
+        "rivo_peak_fitness": false
+      },
+      "future_trap": "Leaves Rivo exhausted. Penalties of -1 Power and -1 Oxygen apply on Sol 27."
+    }
+  ],
+  "game_logic_rules": {
+    "requires_mission5_fitness_unit_check": true,
+    "requires_mission5_crop_check": true,
+    "fatigue_penalty_trigger": "vital_readiness < 4 or card_id == 3"
+  },
+  "scientific_facts_for_ui": {
+    "fact_1": "NASA (OSDR) data shows that living in Martian gravity (38% of Earth's) weakens muscles and bones unless astronauts perform regular resistance exercises.",
+    "fact_2": "Circadian LED lighting and green plants in the greenhouse help regulate the biological clock and reduce the stress of space isolation."
+  }
+}

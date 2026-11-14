@@ -1,0 +1,44 @@
+{
+  "mission_id": "M1_Solar_Panels",
+  "nasa_source_data": {
+    "solar_yield_kwh_per_sqm": 3,
+    "base_computer_load_kwh_per_sol": 5,
+    "mars_dust_decay_rate_per_sol": 0.003,
+    "storm_power_reduction_multiplier": 0.4,
+    "starting_days": 10
+  },
+  "decision_cards": [
+    {
+      "card_id": 1,
+      "card_name": "Emergency Grid",
+      "cost_days": 1,
+      "gross_power_bars": 6,
+      "net_power_after_base_load": 5
+    },
+    {
+      "card_id": 2,
+      "card_name": "Basic Grid",
+      "cost_days": 2,
+      "gross_power_bars": 12,
+      "net_power_after_base_load": 11
+    },
+    {
+      "card_id": 3,
+      "name": "Medium Grid",
+      "cost_days": 3,
+      "gross_power_bars": 18,
+      "net_power_after_base_load": 17
+    },
+    {
+      "card_id": 4,
+      "card_name": "Giant Grid",
+      "cost_days": 4,
+      "gross_power_bars": 24,
+      "net_power_after_base_load": 23
+    }
+  ],
+  "scientific_facts_for_ui": {
+    "fact_1": "A square meter of solar panels on Mars generates only about 3 kWh per day due to its distance from the Sun.",
+    "fact_2": "NASA's Opportunity rover ended its mission in 2018 due to a global dust storm that covered its solar panels."
+  }
+}

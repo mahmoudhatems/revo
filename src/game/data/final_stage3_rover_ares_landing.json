@@ -1,0 +1,52 @@
+{
+  "stage_id": "Stage3_Rover_Expedition_And_Ares2_Landing",
+  "sol_window": [27, 28, 29, 30],
+  "data_sources": [
+    "NASA Mars Trek (Jezero Crater 5x5 DEM & Slope Grid)",
+    "NASA DONKI (Solar Flare Quiet Window C3.4)",
+    "NASA OSDR (EVA Metabolic Cost & Crew Physical Readiness)"
+  ],
+  "nasa_source_data": {
+    "solar_window_class": "C3.4",
+    "solar_hazard_level": 1,
+    "eva_suit_oxygen_consumption_kg_per_hour": 0.12,
+    "mars_to_earth_signal_delay_minutes_avg": 12.5
+  },
+  "rover_mechanics": {
+    "charging_cost_power_bars": 2,
+    "max_movement_points": 10,
+    "fatigue_penalty": {
+      "condition": "rivo_peak_fitness == false",
+      "points_lost": 2,
+      "oxygen_lost_bars": 1,
+      "power_lost_bars": 1
+    }
+  },
+  "terrain_movement_costs": {
+    "Flat_Plains": {
+      "cost_points": 1,
+      "description": "Easiest and most power-efficient route, but takes a longer path."
+    },
+    "Ice_Patch": {
+      "cost_points": 2,
+      "description": "Slight wheel slip requires extra motor effort."
+    },
+    "Crater": {
+      "cost_points": 3,
+      "description": "Rocky slopes consume high power."
+    },
+    "Mountain": {
+      "cost_points": 5,
+      "description": "Deadly trap! Drains half the Rover's battery in a single step."
+    }
+  },
+  "end_game_conditions": {
+    "legendary_commander": "All 4 bars >= 4 (Green Zone)",
+    "cautious_landing": "Any bar between 1 and 3 (Yellow/Red Zone)",
+    "emergency_capsule": "Any bar reaches 0"
+  },
+  "scientific_facts_for_ui": {
+    "fact_1": "Digital Elevation Models (DEM) from NASA's Mars Trek show that climbing steep mountains in Jezero Crater consumes vastly more rover energy than flat plains.",
+    "fact_2": "NASA scientists monitor space weather via DONKI to find quiet solar windows (like C-class) before allowing astronauts to perform Extravehicular Activities (EVAs)."
+  }
+}

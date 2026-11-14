@@ -1,0 +1,688 @@
+{
+  "mapId": "revo_mars_colony_surface_v1",
+  "title": "REVO Mars Colony Surface",
+  "version": 1,
+  "status": "layout_proposal_ready_for_engine_mapping",
+  "coordinateSystem": {
+    "type": "normalized_world",
+    "origin": "top_left",
+    "xRange": [0, 100],
+    "yRange": [0, 80],
+    "note": "Positions are normalized planning coordinates, not final pixel coordinates. Convert through the existing project's world/tile scale."
+  },
+  "rendering": {
+    "camera": "top_down_game_view",
+    "pixelScaling": "nearest_neighbor",
+    "terrainTheme": "orange_red_martian_regolith",
+    "roadTheme": "compacted_light_regolith",
+    "recommendedRoadWidth": 3.5
+  },
+  "layers": [
+    {
+      "id": "terrain_base",
+      "zIndex": 0,
+      "type": "tile_layer",
+      "description": "Mostly flat regolith; use supplied Mars surface ground tiles."
+    },
+    {
+      "id": "terrain_features",
+      "zIndex": 1,
+      "type": "tile_layer",
+      "description": "Crater rims, rocks, cliffs and distant ridges. Keep central walkable area clear."
+    },
+    {
+      "id": "roads",
+      "zIndex": 2,
+      "type": "path_layer",
+      "description": "Compacted regolith paths connecting entrances and service areas."
+    },
+    {
+      "id": "building_shadows",
+      "zIndex": 3,
+      "type": "sprite_layer"
+    },
+    {
+      "id": "buildings",
+      "zIndex": 4,
+      "type": "sprite_layer"
+    },
+    {
+      "id": "external_equipment",
+      "zIndex": 5,
+      "type": "sprite_layer"
+    },
+    {
+      "id": "navigation",
+      "zIndex": 6,
+      "type": "metadata_layer"
+    },
+    {
+      "id": "foreground_details",
+      "zIndex": 7,
+      "type": "sprite_layer"
+    }
+  ],
+  "buildings": [
+    {
+      "id": "main_habitat",
+      "name": "Main Habitat / Command",
+      "asset": "01_main_habitat_command.png",
+      "position": {
+        "x": 50,
+        "y": 39
+      },
+      "footprint": {
+        "width": 10,
+        "height": 9
+      },
+      "entrance": {
+        "x": 50,
+        "y": 45,
+        "facing": "south"
+      },
+      "zone": "central_habitat",
+      "physical": true,
+      "notes": "Central landmark; keep a clear apron around its south-facing entrance.",
+      "revo": {
+        "sprite": {
+          "width": 380,
+          "height": 368,
+          "displayScale": 0.5
+        },
+        "station": "command"
+      }
+    },
+    {
+      "id": "greenhouse",
+      "name": "Greenhouse",
+      "asset": "02_greenhouse.png",
+      "position": {
+        "x": 51,
+        "y": 13
+      },
+      "footprint": {
+        "width": 8,
+        "height": 7
+      },
+      "entrance": {
+        "x": 51,
+        "y": 17,
+        "facing": "south"
+      },
+      "zone": "agriculture",
+      "physical": true,
+      "revo": {
+        "sprite": {
+          "width": 320,
+          "height": 268,
+          "displayScale": 0.5
+        },
+        "station": "greenhouse"
+      }
+    },
+    {
+      "id": "water_processing",
+      "name": "Water Storage / Processing Facility",
+      "asset": "03_water_storage_processing.png",
+      "position": {
+        "x": 29,
+        "y": 31
+      },
+      "footprint": {
+        "width": 8,
+        "height": 6
+      },
+      "entrance": {
+        "x": 33,
+        "y": 34,
+        "facing": "east"
+      },
+      "zone": "life_support",
+      "physical": true,
+      "notes": "Physical facility represented by the supplied asset; Water & Recycling remains a gameplay system/dashboard.",
+      "revo": {
+        "sprite": {
+          "width": 336,
+          "height": 232,
+          "displayScale": 0.5
+        },
+        "station": "water"
+      }
+    },
+    {
+      "id": "oxygen_processing",
+      "name": "Oxygen Processing Facility",
+      "asset": "04_oxygen_cylinder_processing.png",
+      "position": {
+        "x": 68,
+        "y": 31
+      },
+      "footprint": {
+        "width": 8,
+        "height": 7
+      },
+      "entrance": {
+        "x": 64,
+        "y": 34,
+        "facing": "west"
+      },
+      "zone": "life_support",
+      "physical": true,
+      "revo": {
+        "sprite": {
+          "width": 340,
+          "height": 304,
+          "displayScale": 0.5
+        },
+        "station": "oxygen"
+      }
+    },
+    {
+      "id": "reactor_core",
+      "name": "Reactor / Processing Core",
+      "asset": "05_reactor_processing_core.png",
+      "position": {
+        "x": 17,
+        "y": 49
+      },
+      "footprint": {
+        "width": 8,
+        "height": 7
+      },
+      "entrance": {
+        "x": 21,
+        "y": 45,
+        "facing": "north"
+      },
+      "zone": "utility",
+      "physical": true,
+      "gameplayRole": "unassigned_pending_confirmation",
+      "notes": "Placed provisionally; do not connect to mission logic until its function is confirmed.",
+      "revo": {
+        "sprite": {
+          "width": 340,
+          "height": 312,
+          "displayScale": 0.5
+        },
+        "station": null
+      }
+    },
+    {
+      "id": "solar_station",
+      "name": "Solar Power Station",
+      "asset": "06_solar_power_station.png",
+      "position": {
+        "x": 81,
+        "y": 26
+      },
+      "footprint": {
+        "width": 8,
+        "height": 6
+      },
+      "entrance": {
+        "x": 77,
+        "y": 29,
+        "facing": "west"
+      },
+      "zone": "energy",
+      "physical": true,
+      "revo": {
+        "sprite": {
+          "width": 332,
+          "height": 236,
+          "displayScale": 0.5
+        },
+        "station": "solar"
+      }
+    },
+    {
+      "id": "radiation_shelter",
+      "name": "Radiation Shelter",
+      "asset": "07_radiation_shelter.png",
+      "position": {
+        "x": 21,
+        "y": 15
+      },
+      "footprint": {
+        "width": 9,
+        "height": 7
+      },
+      "entrance": {
+        "x": 26,
+        "y": 18,
+        "facing": "east"
+      },
+      "zone": "safety",
+      "physical": true,
+      "revo": {
+        "sprite": {
+          "width": 364,
+          "height": 260,
+          "displayScale": 0.5
+        },
+        "station": "shelter"
+      }
+    },
+    {
+      "id": "maintenance_hangar",
+      "name": "Maintenance Hangar",
+      "asset": "08_maintenance_hangar.png",
+      "position": {
+        "x": 72,
+        "y": 57
+      },
+      "footprint": {
+        "width": 9,
+        "height": 7
+      },
+      "entrance": {
+        "x": 68,
+        "y": 57,
+        "facing": "west"
+      },
+      "zone": "service",
+      "physical": true,
+      "revo": {
+        "sprite": {
+          "width": 348,
+          "height": 252,
+          "displayScale": 0.5
+        },
+        "station": "airlock"
+      }
+    },
+    {
+      "id": "airlock",
+      "name": "Airlock / Exterior Access",
+      "asset": "09_airlock_exterior_facility.png",
+      "position": {
+        "x": 49,
+        "y": 61
+      },
+      "footprint": {
+        "width": 8,
+        "height": 6
+      },
+      "entrance": {
+        "x": 49,
+        "y": 57,
+        "facing": "north"
+      },
+      "zone": "service",
+      "physical": true,
+      "notes": "Main controlled exit from colony to Rover route.",
+      "revo": {
+        "sprite": {
+          "width": 336,
+          "height": 252,
+          "displayScale": 0.5
+        },
+        "station": "airlock"
+      }
+    }
+  ],
+  "externalEquipment": [
+    {
+      "id": "solar_array_a",
+      "type": "solar_panel_cluster",
+      "position": {
+        "x": 90,
+        "y": 18
+      },
+      "count": 4,
+      "zone": "energy",
+      "revoNote": "Shifted 1 unit east so it clears the communications dish."
+    },
+    {
+      "id": "solar_array_b",
+      "type": "solar_panel_cluster",
+      "position": {
+        "x": 91,
+        "y": 32
+      },
+      "count": 4,
+      "zone": "energy"
+    },
+    {
+      "id": "communications_dish",
+      "type": "satellite_dish",
+      "position": {
+        "x": 85,
+        "y": 13
+      },
+      "zone": "energy"
+    },
+    {
+      "id": "water_tanks",
+      "type": "storage_tanks",
+      "position": {
+        "x": 25,
+        "y": 35
+      },
+      "zone": "life_support"
+    },
+    {
+      "id": "rover_parking",
+      "type": "rover_pad",
+      "position": {
+        "x": 66,
+        "y": 65
+      },
+      "zone": "service"
+    }
+  ],
+  "roads": [
+    {
+      "id": "road_main_loop_north",
+      "width": 3.5,
+      "points": [
+        [50, 45],
+        [50, 51],
+        [50, 55],
+        [49, 57]
+      ]
+    },
+    {
+      "id": "road_west_life_support",
+      "width": 3,
+      "points": [
+        [45, 39],
+        [39, 36],
+        [33, 34]
+      ]
+    },
+    {
+      "id": "road_east_life_support",
+      "width": 3,
+      "points": [
+        [55, 39],
+        [61, 36],
+        [64, 34]
+      ]
+    },
+    {
+      "id": "road_greenhouse",
+      "width": 3,
+      "points": [
+        [50, 34],
+        [50, 25],
+        [51, 17]
+      ]
+    },
+    {
+      "id": "road_radiation_shelter",
+      "width": 3,
+      "points": [
+        [45, 37],
+        [37, 29],
+        [30, 22],
+        [26, 18]
+      ]
+    },
+    {
+      "id": "road_solar_station",
+      "width": 3,
+      "points": [
+        [75, 34],
+        [77, 29]
+      ]
+    },
+    {
+      "id": "road_reactor_service",
+      "width": 3,
+      "points": [
+        [45, 43],
+        [34, 46],
+        [25, 45]
+      ]
+    },
+    {
+      "id": "road_hangar",
+      "width": 3.5,
+      "points": [
+        [55, 45],
+        [62, 51],
+        [68, 57]
+      ]
+    },
+    {
+      "id": "road_airlock_hangar",
+      "width": 3.5,
+      "points": [
+        [53, 57],
+        [61, 59],
+        [68, 57]
+      ]
+    },
+    {
+      "id": "road_rover_exit",
+      "width": 4,
+      "points": [
+        [49, 67],
+        [49, 73],
+        [49, 80]
+      ]
+    }
+  ],
+  "navigation": {
+    "mainLandmark": "main_habitat",
+    "playerSpawn": {
+      "x": 50,
+      "y": 47
+    },
+    "roverExit": {
+      "x": 49,
+      "y": 79
+    },
+    "walkableZones": [
+      {
+        "id": "central_apron",
+        "polygon": [
+          [42, 31],
+          [59, 31],
+          [61, 48],
+          [42, 49]
+        ]
+      },
+      {
+        "id": "west_service_corridor",
+        "polygon": [
+          [16, 12],
+          [42, 12],
+          [48, 56],
+          [16, 56]
+        ]
+      },
+      {
+        "id": "east_service_corridor",
+        "polygon": [
+          [58, 12],
+          [96, 12],
+          [96, 65],
+          [58, 65]
+        ]
+      },
+      {
+        "id": "airlock_corridor",
+        "polygon": [
+          [43, 55],
+          [57, 55],
+          [56, 80],
+          [43, 80]
+        ]
+      }
+    ],
+    "blockedZones": [
+      {
+        "id": "building_collision",
+        "source": "building_footprints"
+      },
+      {
+        "id": "major_craters",
+        "source": "terrain_features"
+      },
+      {
+        "id": "cliffs_and_mesas",
+        "source": "terrain_features"
+      }
+    ]
+  },
+  "terrainFeatures": [
+    {
+      "id": "northwest_mesa",
+      "type": "cliff_ridge",
+      "region": [0, 0, 18, 10],
+      "collision": true
+    },
+    {
+      "id": "northeast_mesa",
+      "type": "cliff_ridge",
+      "region": [88, 0, 100, 12],
+      "collision": true
+    },
+    {
+      "id": "west_crater",
+      "type": "crater",
+      "region": [4, 58, 15, 69],
+      "collision": true
+    },
+    {
+      "id": "east_crater",
+      "type": "crater",
+      "region": [86, 70, 98, 79],
+      "collision": true
+    },
+    {
+      "id": "small_rock_scatter",
+      "type": "decorative_rocks",
+      "region": [0, 0, 100, 80],
+      "density": "low_to_medium",
+      "avoid": ["roads", "entrances", "building_footprints"]
+    }
+  ],
+  "constraints": [
+    "No building overlap.",
+    "All physical building entrances must connect to a road.",
+    "No road may cross a major crater or cliff.",
+    "Keep the central habitat apron mostly flat and open.",
+    "Keep Water & Recycling and Crew Health & Fitness as gameplay systems, not extra buildings.",
+    "The Reactor / Processing Core has no gameplay role until confirmed.",
+    "The current coordinates are a proposed layout and must be adapted to the existing project's world scale."
+  ],
+  "revo": {
+    "note": "REVO engine adaptation. Original proposal values above are unchanged; this block adds world scale, sprite metadata, connector roads and edge terrain needed for a continuous, collision-checked colony.",
+    "pxPerUnit": 16,
+    "stationBindings": "building.revo.station maps a physical sprite to an existing BuildingId. Null means visual/inspect only (Reactor role unconfirmed). The Maintenance Hangar opens the existing Airlock & Rover Garage panel.",
+    "landingZone": {
+      "x": 49,
+      "y": 77,
+      "station": "landing",
+      "label": "TO ARES-2 LANDING ZONE"
+    },
+    "extraRoads": [
+      {
+        "id": "road_habitat_ring",
+        "width": 3,
+        "points": [
+          [42, 46.5],
+          [42, 31.5],
+          [58, 31.5],
+          [58, 46.5],
+          [42, 46.5]
+        ]
+      },
+      {
+        "id": "road_solar_link",
+        "width": 3,
+        "points": [
+          [58, 40],
+          [66, 40],
+          [75, 38],
+          [75, 34]
+        ]
+      },
+      {
+        "id": "road_rover_pad",
+        "width": 3,
+        "points": [
+          [61, 59],
+          [64, 63]
+        ]
+      }
+    ],
+    "extraTerrainFeatures": [
+      {
+        "id": "north_ridge",
+        "type": "cliff_ridge",
+        "region": [30, 0, 42, 7],
+        "collision": true
+      },
+      {
+        "id": "north_crater",
+        "type": "crater",
+        "region": [61, 1, 70, 7],
+        "collision": true
+      },
+      {
+        "id": "west_crater_small",
+        "type": "crater",
+        "region": [2, 24, 10, 30],
+        "collision": true
+      },
+      {
+        "id": "southwest_mesa",
+        "type": "mountains",
+        "region": [0, 70, 22, 80],
+        "collision": true
+      },
+      {
+        "id": "south_crater",
+        "type": "crater",
+        "region": [29, 66, 38, 72],
+        "collision": true
+      },
+      {
+        "id": "southeast_mesa",
+        "type": "mountains",
+        "region": [66, 72, 84, 80],
+        "collision": true
+      },
+      {
+        "id": "east_crater_small",
+        "type": "crater",
+        "region": [80, 45, 87, 50],
+        "collision": true
+      },
+      {
+        "id": "east_ridge",
+        "type": "mountains",
+        "region": [95, 40, 100, 56],
+        "collision": true
+      },
+      {
+        "id": "west_hills",
+        "type": "mountains",
+        "region": [0, 34, 8, 44],
+        "collision": true
+      }
+    ],
+    "lamps": [
+      [44, 48.5],
+      [56, 48.5],
+      [44, 29.5],
+      [56, 29.5],
+      [36, 32],
+      [64, 30.5],
+      [47, 55],
+      [56, 56],
+      [30, 20],
+      [74, 36]
+    ],
+    "roverPad": {
+      "x": 66,
+      "y": 65,
+      "width": 7,
+      "height": 5
+    }
+  }
+}

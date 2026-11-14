@@ -1,0 +1,58 @@
+{
+  "crisis_id": "C2_Extreme_Cold_Wave_And_Thermal_Maintenance",
+  "sol_window": [14, 15, 16],
+  "data_sources": ["NASA Mars 2020 Perseverance MEDA (Mars Environmental Dynamics Analyzer)"],
+  "nasa_source_data": {
+    "extreme_night_temp_celsius": -85.0,
+    "daytime_peak_temp_celsius": -20.0,
+    "water_pipe_freezing_point_celsius": 0.0,
+    "battery_cold_efficiency_drop_percentage": 0.25
+  },
+  "decision_cards": [
+    {
+      "card_id": 1,
+      "card_name": "Maximum Heating & Pipe Maintenance Priority",
+      "cost_days": 3,
+      "power_cost_total": 1,
+      "effects": {
+        "water_loss": 0,
+        "readiness_loss": 0,
+        "oxygen_loss": 3
+      },
+      "future_trap": "Smart choice if oxygen reserves are high from Mission 3."
+    },
+    {
+      "card_id": 2,
+      "card_name": "Oxygen Priority & Reduced Heating",
+      "cost_days": 3,
+      "power_cost_total": 2,
+      "effects": {
+        "water_loss": 0,
+        "readiness_loss": 2,
+        "oxygen_loss": 0
+      },
+      "future_trap": "Rescues players whose oxygen bar is in the yellow or red zone."
+    },
+    {
+      "card_id": 3,
+      "card_name": "Backup Heating Loop Activation",
+      "cost_days": 3,
+      "power_cost_total": 1,
+      "effects": {
+        "water_loss": 0,
+        "readiness_loss": 0,
+        "oxygen_loss": 0
+      },
+      "unlock_condition": "habitat_temp == 'Warm' (from Mission 3)",
+      "future_trap": "Protects pipes, greenhouse, and oxygen simultaneously with zero losses!"
+    }
+  ],
+  "game_logic_rules": {
+    "requires_mission3_heater_status": true,
+    "uninsulated_cold_penalty_multiplier": 2.0
+  },
+  "scientific_facts_for_ui": {
+    "fact_1": "Measurements from the MEDA station on the Perseverance rover show that temperatures in Jezero Crater drop to -85\u00b0C at night.",
+    "fact_2": "Batteries and water pipes in Mars bases require continuous heating and thermal insulation to prevent fluid freezing and power loss."
+  }
+}

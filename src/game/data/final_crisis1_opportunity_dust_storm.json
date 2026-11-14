@@ -1,0 +1,51 @@
+{
+  "crisis_id": "C1_Opportunity_Dust_Storm_And_Solar_Maintenance",
+  "sol_window": [11, 12, 13],
+  "data_sources": [
+    "NASA Mars Trek (Jezero Crater Atmospheric Dust Data)",
+    "NASA Mars Exploration Rovers (Opportunity 2018 Global Dust Storm & Solar Array Tau)"
+  ],
+  "nasa_source_data": {
+    "historical_reference_mission": "Mars Exploration Rover Opportunity (2018)",
+    "storm_duration_sols": 3,
+    "solar_irradiance_multiplier": 0.4,
+    "martian_dust_grain_size_microns": 3.0,
+    "dust_electrostatic_adhesion": true
+  },
+  "decision_cards": [
+    {
+      "card_id": 1,
+      "card_name": "Hibernation & Load Shedding",
+      "cost_days": 3,
+      "power_effect": "Minimum power consumption (-1 bar total over 3 days)",
+      "vital_readiness_effect": -2,
+      "future_trap": "Safe choice if the player built 'Emergency' or 'Basic' grid in Mission 1."
+    },
+    {
+      "card_id": 2,
+      "card_name": "Robot Dust Cleaning During Storm",
+      "cost_days": 3,
+      "power_effect": "Net +2 power bars after storm clears",
+      "vital_readiness_effect": 0,
+      "oxygen_and_radiation_effect": -1,
+      "future_trap": "Smart maintenance if you have surplus oxygen and radiation safety from previous missions."
+    },
+    {
+      "card_id": 3,
+      "card_name": "Full Operation Mode",
+      "cost_days": 3,
+      "power_effect": "Heavy deficit (-3 power bars per sol)",
+      "vital_readiness_effect": 0,
+      "future_trap": "Deadly trap for small solar setups; only works for 'Medium' or 'Giant' grid builders."
+    }
+  ],
+  "game_logic_rules": {
+    "solar_power_reduction_multiplier": 0.4,
+    "accumulated_dust_reset_on_cleaning": true,
+    "emergency_capsule_trigger_condition": "battery_bars <= 0"
+  },
+  "scientific_facts_for_ui": {
+    "fact_1": "Dust storms on Mars lift very fine dust (finer than flour) that sticks to solar panels and blocks sunlight.",
+    "fact_2": "In 2018, a global dust storm on Mars blocked the sun from NASA's Opportunity rover and prevented its solar panels from charging its batteries."
+  }
+}

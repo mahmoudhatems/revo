@@ -1,0 +1,96 @@
+{
+  "mission_id": "M5_Greenhouse_And_Crew_Health",
+  "data_sources": [
+    "CSA / NASA Veggie & Advanced Plant Habitat (final_csa_food.json)",
+    "NASA OSDR (Bone Density, Muscle Mass, Immune & Circadian Sleep Studies)"
+  ],
+  "nasa_source_data": {
+    "mars_gravity_fraction_of_earth": 0.38,
+    "unmitigated_muscle_loss_percent_per_month": 0.15,
+    "unmitigated_bone_density_loss_percent_per_month": 0.015,
+    "circadian_led_wavelength_nm": 480,
+    "crops_catalog": [
+      {
+        "crop_id": "CR01",
+        "name_en": "Potatoes",
+        "growth_time_days": 3,
+        "water_cost_units": 5,
+        "energy_provided": 50
+      },
+      {
+        "crop_id": "CR02",
+        "name_en": "Tomatoes",
+        "growth_time_days": 5,
+        "water_cost_units": 8,
+        "energy_provided": 70
+      },
+      {
+        "crop_id": "CR03",
+        "name_en": "Lettuce",
+        "growth_time_days": 2,
+        "water_cost_units": 3,
+        "energy_provided": 20
+      },
+      {
+        "crop_id": "CR04",
+        "name_en": "Soybeans",
+        "growth_time_days": 6,
+        "water_cost_units": 10,
+        "energy_provided": 100
+      }
+    ]
+  },
+  "decision_cards": [
+    {
+      "card_id": 1,
+      "crop_id": "CR03",
+      "card_name": "Fast-Growing Lettuce",
+      "cost_days": 1,
+      "water_cost_liters": 3,
+      "power_cost_per_sol": 1,
+      "readiness_gained": 1,
+      "future_trap": "Cheapest option; good if water/power are tight, but low food supply for Ares-2 crew."
+    },
+    {
+      "card_id": 2,
+      "crop_id": "CR01",
+      "card_name": "Balanced Potatoes",
+      "cost_days": 1,
+      "water_cost_liters": 5,
+      "power_cost_per_sol": 2,
+      "readiness_gained": 2,
+      "future_trap": "Balanced choice if you only have 2 days left (1 day potatoes + 1 day fitness)."
+    },
+    {
+      "card_id": 3,
+      "crop_id": "CR02",
+      "card_name": "Immune Tomatoes",
+      "cost_days": 2,
+      "water_cost_liters": 8,
+      "power_cost_per_sol": 2,
+      "readiness_gained": 3,
+      "future_trap": "Boosts immunity before isolation crisis (Sol 24), but requires solid water reserves."
+    },
+    {
+      "card_id": 4,
+      "crop_id": "CR04",
+      "card_name": "Soybeans + Fitness Unit",
+      "cost_days": 3,
+      "water_cost_liters": 10,
+      "power_cost_per_sol": 3,
+      "readiness_gained": 4,
+      "future_trap": "Locked if you skipped the water recycling filter in Mission 2! Requires 3 full remaining days."
+    }
+  ],
+  "game_logic_rules": {
+    "starting_vital_readiness": 8,
+    "daily_vital_decay_rate": 0.2,
+    "min_water_for_greenhouse": 90,
+    "requires_water_recycler": true
+  },
+  "scientific_facts_for_ui": {
+    "fact_1": "Mars gravity is only 38% of Earth's, causing astronauts' muscles and bones to weaken rapidly without daily resistance exercise.",
+    "fact_2": "NASA uses special blue LED lighting (Circadian Lighting) to regulate astronauts' biological clocks and sleep cycles in the absence of natural Earth light.",
+    "fact_3": "Closed greenhouse plants produce fresh oxygen and food while absorbing carbon dioxide, just like the Veggie experiment on the ISS."
+  }
+}

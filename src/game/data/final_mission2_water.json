@@ -1,0 +1,61 @@
+{
+  "mission_id": "M2_Water_System",
+  "data_sources": [
+    "NASA OSDR (ISS ECLSS Water Recovery System)",
+    "NASA Mars Science Laboratory (Curiosity SAM Instrument)",
+    "NASA Mars Trek (Jezero Crater Paleolake Mineralogy)"
+  ],
+  "nasa_source_data": {
+    "lander_initial_tank_liters": 300,
+    "crew_daily_water_need_liters": 10.0,
+    "system_pipe_evaporation_liters_per_sol": 2.0,
+    "total_daily_consumption_liters": 12.0,
+    "mars_regolith_bound_water_percentage": 0.02,
+    "soil_oven_extraction_liters_per_sol": 4.0,
+    "iss_water_recycling_efficiency_percentage": 0.9
+  },
+  "decision_cards": [
+    {
+      "card_id": 1,
+      "card_name": "Tank Only",
+      "cost_days": 0,
+      "cost_power_bars_per_sol": 0,
+      "water_gained_liters_per_sol": 0,
+      "net_water_change_liters_per_sol": -12
+    },
+    {
+      "card_id": 2,
+      "card_name": "Regolith Soil Oven",
+      "cost_days": 1,
+      "cost_power_bars_per_sol": 3,
+      "water_gained_liters_per_sol": 4,
+      "net_water_change_liters_per_sol": -8
+    },
+    {
+      "card_id": 3,
+      "card_name": "Water Recycling Filter",
+      "cost_days": 2,
+      "cost_power_bars_per_sol": 1,
+      "water_gained_liters_per_sol": 9,
+      "net_water_change_liters_per_sol": -3
+    },
+    {
+      "card_id": 4,
+      "card_name": "Integrated Water Station",
+      "cost_days": 3,
+      "cost_power_bars_per_sol": 4,
+      "water_gained_liters_per_sol": 13,
+      "net_water_change_liters_per_sol": 1
+    }
+  ],
+  "game_logic_thresholds": {
+    "minimum_water_for_greenhouse_liters": 90,
+    "empty_tank_sol_limit_card_1": 25,
+    "total_mission_duration_sols": 30
+  },
+  "scientific_facts_for_ui": {
+    "fact_1": "Jezero Crater was filled with liquid water 3.5 billion years ago, but today it is completely dry.",
+    "fact_2": "NASA's Curiosity rover proved that Martian soil contains about 2% bound water trapped inside minerals, extractable by heating.",
+    "fact_3": "The International Space Station (ISS) recycles over 90% of wastewater, including crew sweat and breath."
+  }
+}

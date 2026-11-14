@@ -1,0 +1,58 @@
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+export const asset = (p: string) => `${base}/assets/revo/${p}`;
+
+export const ASSETS = {
+  stations: {
+    water: asset("stations/01_water_recycling_station.png"),
+    solar: asset("stations/02_solar_power_station.png"),
+    oxygen: asset("stations/03_oxygen_heating_station.png"),
+  },
+  revoHelmet: asset("astronaut/a001.png"),
+  revoHelmetWalk: ["a009", "a010", "a011", "a012"].map((f) => asset(`astronaut/${f}.png`)),
+  revoFace: asset("astronaut/a013.png"),
+  revoFace2: asset("astronaut/a016.png"),
+  revoWalk: ["a021", "a022", "a023", "a024"].map((f) => asset(`astronaut/${f}.png`)),
+  drone: asset("drone/d006.png"),
+  droneFrames: ["d006", "d007", "d011", "d012"].map((f) => asset(`drone/${f}.png`)),
+  droneScan: asset("drone/d004.png"),
+  droneBeam: asset("drone/d005.png"),
+  tiles: {
+    flat: asset("tiles/flat.png"),
+    flat2: asset("tiles/flat2.png"),
+    crater: asset("tiles/crater.png"),
+    rocks: asset("tiles/rocks.png"),
+    ice: asset("tiles/ice.png"),
+    mountain: asset("tiles/mountain.png"),
+    cracked: asset("tiles/cracked.png"),
+  },
+};
+
+export const IMAGE_ICONS: Record<string, string> = {
+  o2: asset("icons/o2.png"),
+  drone: asset("drone/d006.png"),
+  o2tank: asset("icons/o2tank.png"),
+  battery: asset("icons/battery.png"),
+  batteryLow: asset("icons/battery-low.png"),
+  radiation: asset("icons/radiation.png"),
+  warn: asset("icons/warning.png"),
+  info: asset("icons/info.png"),
+  shield: asset("icons/shield.png"),
+  neil: asset("icons/neil.png"),
+  neilAlert: asset("icons/neil-alert.png"),
+  tools: asset("icons/tools.png"),
+  radar: asset("icons/radar.png"),
+  antenna: asset("icons/antenna.png"),
+  mail: asset("icons/mail.png"),
+  dust: asset("icons/dust.png"),
+  wrench: asset("icons/wrench.png"),
+  redButton: asset("icons/red-button.png"),
+  monitor: asset("icons/monitor.png"),
+  badgeStars: asset("icons/badge-stars.png"),
+  badgeStar: asset("icons/badge-star.png"),
+  close: asset("icons/close.png"),
+  star: asset("icons/star.png"),
+  doc: asset("icons/doc.png"),
+  noWater: asset("icons/no-water.png"),
+  frameAlert: asset("icons/frame-alert.png"),
+  frameWarn: asset("icons/frame-warning.png"),
+};

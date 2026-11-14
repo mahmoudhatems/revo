@@ -1,0 +1,86 @@
+{
+  "crisis_id": "C4_CME_Blackout_And_Fuse_Maintenance",
+  "sol_window": [20, 21, 22],
+  "data_sources": ["NASA DONKI (Coronal Mass Ejection - CME & Radio Blackout Events)"],
+  "nasa_source_data": {
+    "cme_event_class": "X2.1",
+    "hazard_level": 3,
+    "cme_speed_km_per_sec": 1450,
+    "radio_blackout_duration_sols": 3,
+    "main_breaker_amp_limit": 10
+  },
+  "circuit_components": [
+    {
+      "device_id": "dev_01",
+      "device_name": "Oxygen Generator (MOXIE)",
+      "amp_load": 4,
+      "is_essential": true
+    },
+    {
+      "device_id": "dev_02",
+      "device_name": "Thermal Heater",
+      "amp_load": 3,
+      "is_essential": true
+    },
+    {
+      "device_id": "dev_03",
+      "device_name": "Water Shield Pump",
+      "amp_load": 2,
+      "is_essential": true
+    },
+    {
+      "device_id": "dev_04",
+      "device_name": "High-Power Greenhouse LEDs",
+      "amp_load": 4,
+      "is_essential": false
+    }
+  ],
+  "decision_wiring_options": [
+    {
+      "option_id": 1,
+      "name": "Smart Wiring (Oxygen + Heater + Shield Pump)",
+      "total_amps": 9,
+      "breaker_limit": 10,
+      "effects": {
+        "power_loss": 1,
+        "vital_readiness_loss": 2,
+        "radiation_loss": 0
+      },
+      "result_description": "Success! Player relied on logbook data."
+    },
+    {
+      "option_id": 2,
+      "name": "Oxygen + Heater Only",
+      "total_amps": 7,
+      "breaker_limit": 10,
+      "effects": {
+        "power_loss": 1,
+        "vital_readiness_loss": 2,
+        "radiation_loss": 1
+      },
+      "result_description": "Safe from overload, but leaves the radiation shield unpumped."
+    },
+    {
+      "option_id": 3,
+      "name": "Connect All Devices (Overload)",
+      "total_amps": 13,
+      "breaker_limit": 10,
+      "effects": {
+        "power_loss": 3,
+        "oxygen_loss": 2,
+        "fuse_blown": true
+      },
+      "result_description": "Fuse overload! Triggers sparks and heavy resource penalty."
+    }
+  ],
+  "game_logic_rules": {
+    "donki_event_trigger": "X2.1",
+    "hazard_level": 3,
+    "neil_offline_status": true,
+    "requires_logbook_lookup": true
+  },
+  "scientific_facts_for_ui": {
+    "fact_1": "Major Coronal Mass Ejections (CMEs) are giant magnetic clouds erupted from the Sun that trigger geomagnetic storms and cause radio blackouts.",
+    "fact_2": "Strong solar storms cause electrical voltage fluctuations, requiring the disconnection of non-essential devices to protect main power breakers."
+  }
+}

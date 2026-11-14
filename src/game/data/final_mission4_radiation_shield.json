@@ -1,0 +1,60 @@
+{
+  "mission_id": "M4_Radiation_Shield",
+  "data_sources": [
+    "NASA OSDR / RadLab (ISS Radiation Dosimetry & Shielding Attenuation)",
+    "NASA Mars Science Laboratory (Curiosity RAD Surface Radiation Measurements)"
+  ],
+  "nasa_source_data": {
+    "mars_surface_avg_dose_rate_msv_per_day": 0.64,
+    "solar_particle_event_spike_msv": 50.0,
+    "aluminum_hull_attenuation_factor": 0.15,
+    "martian_regolith_attenuation_factor": 0.35,
+    "liquid_water_hydrogen_attenuation_factor": 0.68
+  },
+  "decision_cards": [
+    {
+      "card_id": 1,
+      "card_name": "Skip Shield (Capsule Only)",
+      "cost_days": 0,
+      "cost_power_bars_per_sol": 0,
+      "safety_bars_gained": 0,
+      "future_trap": "Deadly hazard during the solar flare (Sol 18) - massive safety and health loss!"
+    },
+    {
+      "card_id": 2,
+      "card_name": "Martian Regolith Soil Shield",
+      "cost_days": 1,
+      "cost_power_bars_per_sol": 0,
+      "safety_bars_gained": 2,
+      "future_trap": "Medium protection; loses 2 bars during the Sol 18 storm."
+    },
+    {
+      "card_id": 3,
+      "card_name": "Water Tank Shield (The Golden Shield)",
+      "cost_days": 1,
+      "cost_power_bars_per_sol": 1,
+      "safety_bars_gained": 4,
+      "future_trap": "The golden choice - survives the solar flare with 0 loss and saves days for farming!"
+    },
+    {
+      "card_id": 4,
+      "card_name": "Dual Shield (Water + Thick Soil)",
+      "cost_days": 3,
+      "cost_power_bars_per_sol": 1,
+      "safety_bars_gained": 6,
+      "future_trap": "Burns 3 full days, completely wasting the greenhouse time for Mission 5."
+    }
+  ],
+  "game_logic_rules": {
+    "radiation_shield_max_bars": 10,
+    "starting_safety_bars": 7,
+    "daily_radiation_decay_rate": 0.2,
+    "requires_non_empty_water_tank": true,
+    "solar_flare_sol": 18
+  },
+  "scientific_facts_for_ui": {
+    "fact_1": "Unlike Earth, Mars lacks a strong magnetic field and a thick atmosphere, so space radiation constantly reaches its surface.",
+    "fact_2": "NASA's RadLab measurements show that hydrogen-rich water absorbs space radiation with roughly twice the efficiency of Martian rocks and soil.",
+    "fact_3": "Engineers use International Space Station (ISS) measurements as a reference model to design hardened shelter rooms for astronauts on Mars."
+  }
+}

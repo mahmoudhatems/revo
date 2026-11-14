@@ -1,0 +1,60 @@
+{
+  "crisis_id": "C3_Solar_Flare_And_Shield_Maintenance",
+  "sol_window": [17, 18, 19],
+  "data_sources": [
+    "NASA DONKI (Space Weather Database Of Notifications, Knowledge, Information - FLR/SEP)",
+    "NASA RadLab (Radiation Shielding & Hydrogen-Rich Water Attenuation)"
+  ],
+  "nasa_source_data": {
+    "flare_class": "M1.2",
+    "hazard_level": 2,
+    "particle_arrival_minutes": 25,
+    "unshielded_dose_penalty_bars": 4,
+    "water_wall_attenuation_efficiency": 1.0
+  },
+  "decision_cards": [
+    {
+      "card_id": 1,
+      "card_name": "Seal Airlock & Activate Water Shield Pump",
+      "cost_days": 3,
+      "power_cost_total": 2,
+      "effects": {
+        "radiation_loss": 0,
+        "greenhouse_loss": 0
+      },
+      "future_trap": "Water shield bonus! Without the water shield from Mission 4, the player loses 3 radiation safety bars."
+    },
+    {
+      "card_id": 2,
+      "card_name": "Redirect Shield to Greenhouse",
+      "cost_days": 3,
+      "power_cost_total": 2,
+      "effects": {
+        "radiation_loss": 3,
+        "greenhouse_loss": 0
+      },
+      "future_trap": "Tactical sacrifice option if safety is high and you want to protect tomatoes or soybeans."
+    },
+    {
+      "card_id": 3,
+      "card_name": "Delay or Stay in Glass Dome (Timeout)",
+      "cost_days": 3,
+      "power_cost_total": 0,
+      "effects": {
+        "radiation_loss": 4,
+        "health_loss": 2
+      },
+      "future_trap": "Triggers emergency capsule deployment if dual shield is missing."
+    }
+  ],
+  "game_logic_rules": {
+    "donki_event_trigger": "M1.2",
+    "hazard_level": 2,
+    "response_timer_seconds": 12,
+    "requires_mission4_water_shield": true
+  },
+  "scientific_facts_for_ui": {
+    "fact_1": "Solar flares release high-energy charged particles that can penetrate unprotected spacecraft walls.",
+    "fact_2": "NASA's RadLab research confirms that hydrogen-rich water-filled walls absorb space radiation more efficiently than traditional metals."
+  }
+}

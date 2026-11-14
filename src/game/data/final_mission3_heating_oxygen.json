@@ -1,0 +1,65 @@
+{
+  "mission_id": "M3_Heating_And_Oxygen",
+  "data_sources": [
+    "NASA Mars 2020 Perseverance (MOXIE Solid Oxide Electrolysis Specs)",
+    "NASA Mars 2020 Perseverance (MEDA Weather Station - Jezero Crater)",
+    "NASA OSDR (Human Metabolic Oxygen Consumption)"
+  ],
+  "nasa_source_data": {
+    "moxie_required_operating_temp_celsius": 800.0,
+    "moxie_oxygen_production_grams_per_hour": 10.0,
+    "crew_daily_oxygen_need_kg": 0.84,
+    "mars_atmosphere_co2_percentage": 0.95,
+    "jezero_crater_avg_night_temp_celsius": -60.0,
+    "jezero_crater_min_winter_temp_celsius": -85.0,
+    "habitat_safe_min_temp_celsius": 18.0
+  },
+  "decision_cards": [
+    {
+      "card_id": 1,
+      "card_name": "Weak Heating (Intermittent)",
+      "cost_days": 1,
+      "cost_power_bars_per_sol": 2,
+      "heater_status": "Cold (Blue)",
+      "oxygen_production_rate": "Very Weak (+0.5 bar/sol - Barely covers breathing)",
+      "future_trap": "Pipes freeze and burst during the frost wave (Sol 15)!"
+    },
+    {
+      "card_id": 2,
+      "card_name": "Full Heating + Balanced Oxygen",
+      "cost_days": 1,
+      "cost_power_bars_per_sol": 5,
+      "heater_status": "Warm & Stable (Green)",
+      "oxygen_production_rate": "Balanced (+1 bar every 2 days)",
+      "future_trap": "The golden choice \u2014 perfect balance protecting the habitat and saving power."
+    },
+    {
+      "card_id": 3,
+      "name": "Fast Heating + Double Oxygen",
+      "cost_days": 1,
+      "cost_power_bars_per_sol": 6,
+      "heater_status": "Hot for Device Only (Yellow)",
+      "oxygen_production_rate": "High (+2 bars every 2 days)",
+      "future_trap": "Room chillness slows batteries, costing an extra -1 power during the frost wave."
+    },
+    {
+      "card_id": 4,
+      "name": "Maximum Heat & Air",
+      "cost_days": 1,
+      "cost_power_bars_per_sol": 8,
+      "heater_status": "Max Heat (Bright Green)",
+      "oxygen_production_rate": "Maximum (Fills oxygen bar instantly to 10/10)",
+      "future_trap": "Total safety, but swallows most of the base battery!"
+    }
+  ],
+  "game_logic_rules": {
+    "dependency_rule": "heater_active must be true to run oxygen_generator",
+    "minimum_safe_power_bars": 5,
+    "frost_wave_sol": 15
+  },
+  "scientific_facts_for_ui": {
+    "fact_1": "NASA's MOXIE device requires an internal heater to reach 800\u00b0C to separate oxygen from carbon dioxide.",
+    "fact_2": "The Martian atmosphere consists of 95% toxic carbon dioxide, and night temperatures in Jezero Crater drop to -60\u00b0C.",
+    "fact_3": "Without continuous heating, water pipes freeze and batteries lose efficiency quickly in the harsh Martian cold."
+  }
+}
