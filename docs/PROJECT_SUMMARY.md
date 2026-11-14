@@ -44,7 +44,7 @@ Sticker Set + Voice Arc — منظومة محتوى قابلة للتكرار ب
   مفتوحة المصدر (MIT) لـ Tornado/Fog/Confetti/Collect-Burst معاد تلوينها للبالتة المريخية،
   ومحرك عاصفة Canvas بـ Parallax + Easing أسّي (τ≈2.5–3.5s) بين المراحل.
 - **الخط/الواجهة**: خط بكسل، HUD مقاسات ملونة، Kid Mode toggle، ألبوم ستيكرز.
-- **Deploy**: GitHub (فرع `feat/dust-storm-fx`) + Vercel (مشروع Git-linked — بناء تلقائي
+- **Deploy**: GitHub (فرع `main`) + Vercel (مشروع Git-linked — بناء تلقائي
   مع كل Push على فرع الإنتاج) — إعداد Vite: `dist/` ثابت، SPA fallback.
 
 ## 5) خطوات التنفيذ (Timeline مختصر)
@@ -58,5 +58,5 @@ Sticker Set + Voice Arc — منظومة محتوى قابلة للتكرار ب
 8. النشر: فرع جديد على GitHub → ربط Vercel → Deploy على فرع الإنتاج.
 
 ## 6) حالات النشر الحالية
-- الفرع `feat/dust-storm-fx` مُجهز محليًا (commit كامل 554 ملف).
+- الفرع `main` هو فرع الإنتاج على Vercel، وبداخله حزمة التسليم كاملة في `public/demo/`.
 - انتظار موافقة صلاحية الكتابة على GitHub App ثم Push → ثم مشروع Vercel مرتبط بالنفرع.

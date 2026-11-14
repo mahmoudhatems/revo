@@ -5,7 +5,7 @@ Public links used below (all open with no login):
 - Final project (play): https://revo-neon.vercel.app
 - Demo deck PDF (7 slides): https://revo-neon.vercel.app/demo/REVO-Demo-7-Slides.pdf
 - Project document PDF (Cairo): https://revo-neon.vercel.app/demo/REVO-Project-Document.pdf
-- Source code: https://github.com/mahmoudhatems/revo (branch `feat/intro-cutscene`)
+- Source code: https://github.com/mahmoudhatems/revo (branch `main` — production)
 - [NASA Project page link — paste after Submit for Judging]
 
 ---

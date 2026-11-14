@@ -2,7 +2,7 @@
 ### Junior Astronaut Mission Trainer · Team REVO · NASA Space Apps Challenge, Cairo 2026
 
 **Live build (no login):** https://revo-neon.vercel.app
-**Source code:** https://github.com/mahmoudhatems/revo (branch `feat/intro-cutscene`)
+**Source code:** https://github.com/mahmoudhatems/revo (branch `main` — production)
 **Demo deck (7 slides):** https://revo-neon.vercel.app/demo/REVO-Demo-7-Slides.pdf
 **This document (PDF):** https://revo-neon.vercel.app/demo/REVO-Project-Document.pdf
 
@@ -135,7 +135,7 @@ Expected time: 5 minutes to the crisis, 20 minutes for a full 30-sol run.
 - Tested so far: Chromium (Chrome/Edge) at 1280×960 and 1440×900, plus the responsive tablet viewport. Safari on macOS/iPad is **not yet verified** — it is on the pre-submission list, and any known gap will be listed here rather than hidden.
 - Automated: 57 unit tests, type-check clean, deterministic engine (seeded crisis outcomes for the storm scenario).
 - Evidence kept in the repository: `tests/` (test suite), `docs/AUDIO_PROVENANCE.md` (voice provenance), `docs/CREDITS.md` (source list), commit history of the deployed branch.
-- The deployed build is the branch `feat/intro-cutscene`, commit recorded in the deployment metadata on Vercel.
+- The deployed build is the branch `main`, commit recorded in the deployment metadata on Vercel.
 
 ---
 
