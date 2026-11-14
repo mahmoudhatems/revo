@@ -4,6 +4,7 @@ import { currentStep, currentStepId } from "../../game/engine";
 import { RULES } from "../../game/rules";
 import { fmtDelta, visibleMeters } from "../../game/selectors";
 import { stickerById } from "../../game/content";
+import { StickerFx } from "../../fx/StickerFx";
 import type { GameState } from "../../game/types";
 import { useGame } from "../GameProvider";
 import { METER_META } from "../hud/Hud";
@@ -333,6 +334,7 @@ export function Result() {
           ))}
         </button>
       ) : null}
+      {stickers.length ? <StickerFx badge={{ x: 450, y: 185 }} /> : null}
       <div className="absolute right-6 top-[140px] w-[630px] flex flex-col gap-5">
         <Frame className="p-5">
           <div className="font-pixel text-[12px] text-orange leading-relaxed mb-3">

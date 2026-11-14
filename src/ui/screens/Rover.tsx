@@ -14,6 +14,7 @@ import {
   type Terrain,
 } from "../../game/terrain";
 import type { EndingTier } from "../../game/types";
+import { Credits } from "../components/Credits";
 import { STEPS, STICKERS } from "../../game/content";
 import { useGame } from "../GameProvider";
 import { Icon } from "../components/Icon";
@@ -538,6 +539,7 @@ const ENDINGS: Record<
 
 export function Ending() {
   const { state, dispatch, startNew } = useGame();
+  const [credits, setCredits] = useState(false);
   const tier = ending(state);
   const e = ENDINGS[tier];
   const lows = lowMeterCauses(state);
@@ -589,15 +591,18 @@ export function Ending() {
             size="lg"
             icon="doc"
             onClick={() => dispatch({ type: "SHOW_REPORT" })}
-            autoFocus
           >
             STICKER & SCIENCE PASSPORT
+          </PixelButton>
+          <PixelButton size="lg" variant="ghost" icon="starG" onClick={() => setCredits(true)} autoFocus>
+            THE END · CREDITS
           </PixelButton>
         </div>
       </div>
       <div className="absolute right-16 bottom-8">
         <AnimSprite frames={ASSETS.revoWalk} h={150} fps={4} />
       </div>
+      {credits ? <Credits onClose={() => setCredits(false)} /> : null}
     </div>
   );
 }

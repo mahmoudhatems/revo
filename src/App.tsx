@@ -1,6 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+import { audio, type MusicTrack } from "./ui/audio";
 import { GameProvider, useGame } from "./ui/GameProvider";
 import { Stage } from "./ui/Stage";
+import { DustStorm } from "./fx/DustStorm";
+import { STEP_ORDER } from "./game/content";
 import { CrisisBanner, Hud } from "./ui/hud/Hud";
 import {
   AlertModal,
@@ -63,6 +66,42 @@ function Screen() {
 function Game() {
   const { state, overlay, setOverlay } = useGame();
   const playing = state.screen !== "title";
+  // MD fx 2.0: storm intensity follows the existing Dust Storm crisis (c1 "Opportunity", Sol 11-13)
+  // phase progression only - no new gameplay rules. ?storm=0..1 forces a level for
+  // testing/screenshots.
+  const storm = useMemo(() => {
+    const qs = new URLSearchParams(window.location.search).get("storm");
+    if (qs !== null && qs !== "") {
+      const v = parseFloat(qs);
+      if (!Number.isNaN(v)) return Math.max(0, Math.min(1, v));
+    }
+    if (STEP_ORDER[state.stepIndex] !== "c1") return 0;
+    switch (state.screen) {
+      case "briefing":
+        return 0.3; // Phase A - approaching
+      case "decision":
+      case "install":
+        return 0.65; // Phase B - full storm around the solar station
+      case "result":
+        // peak while N.E.I.L. reacts; the chosen path shapes how the storm reads.
+        // Hibernation = darker/heavier, Robot Sweep = storm losing its grip.
+        return state.lastChoice === "fullops" ? 0.85 : state.lastChoice === "clean" ? 0.75 : 0.8;
+      case "sleep":
+        return 0.35; // night under the storm
+      case "hub":
+        return 0.5; // storm days outside between actions
+      default:
+        return 0; // Phase C - the eased drop back to 0 is the clearing
+    }
+  }, [state.stepIndex, state.screen, state.lastChoice]);
+  useEffect(() => {
+    const s = state.screen;
+    let track: MusicTrack = "colony";
+    if (s === "briefing" || s === "install" || s === "decision" || s === "result" || s === "sleep") track = "mission";
+    else if (s === "fuse") track = "crisis";
+    else if (s === "roverPrep" || s === "roverLaunch" || s === "roverGrid") track = "rover";
+    audio.setMusic(track);
+  }, [state.screen]);
   const close = () => setOverlay(null);
 
   useEffect(() => {
@@ -84,6 +123,11 @@ function Game() {
   return (
     <Stage>
       <Screen />
+      <DustStorm
+        level={storm}
+        onGust={(hard) => audio.sfx(hard ? "gust_hard" : "wind_gust", 0.7)}
+        onLevel={(x) => audio.setWind(x)}
+      />
       {playing && state.screen !== "sleep" ? <Hud /> : null}
       {playing ? <CrisisBanner /> : null}
       {overlay?.kind === "logbook" ? <Logbook onClose={close} /> : null}

@@ -4,12 +4,14 @@ import {
   useState,
   type ButtonHTMLAttributes,
   type CSSProperties,
+  type MouseEvent,
   type ReactNode,
 } from "react";
 import { ASSETS } from "../../game/assets";
 import { GLOSSARY, findGlossary, type BuildingId } from "../../game/content";
 import { SurfaceCamera } from "../../surface/MarsSurface";
 import { focusForStation } from "../../surface/surface";
+import { audio } from "../audio";
 import { useGame } from "../GameProvider";
 import { speak, stopSpeaking } from "../voice";
 import { Icon } from "./Icon";
@@ -46,6 +48,7 @@ export function PixelButton({
   selected,
   className = "",
   children,
+  onClick,
   ...rest
 }: ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: BtnVariant;
@@ -54,6 +57,10 @@ export function PixelButton({
   selected?: boolean;
 }) {
   const v = variant === "orange" ? "" : `px-btn-${variant}`;
+  const click = (e: MouseEvent<HTMLButtonElement>) => {
+    audio.sfx(variant === "danger" ? "ui_back" : "ui_click");
+    onClick?.(e);
+  };
   const sz =
     size === "lg"
       ? "text-[13px] px-6 py-3 gap-3 min-h-[52px]"
@@ -65,6 +72,7 @@ export function PixelButton({
       type="button"
       className={`px-btn ${v} ${selected ? "px-btn-selected" : ""} inline-flex items-center justify-center uppercase ${sz} ${className}`}
       {...rest}
+      onClick={click}
     >
       {icon ? <Icon name={icon} size={size === "lg" ? "md" : "sm"} /> : null}
       <span>{children}</span>
@@ -248,7 +256,7 @@ function SpeakButton({ text }: { text: string }) {
   return (
     <button
       type="button"
-      onClick={() => speak(text)}
+      onClick={() => { audio.sfx("ui_select"); void speak(text); }}
       className="p-1 hover:bg-surface"
       aria-label="Read aloud"
       title="Read aloud"

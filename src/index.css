@@ -483,3 +483,71 @@
     animation: none !important;
   }
 }
+
+/* REVO logo intro (MD audio 1.0) */
+.logo-sweep {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.logo-sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.5) 50%, transparent 58%);
+  background-size: 260% 100%;
+  animation: logo-shine 2.6s 0.9s ease-in-out 2;
+}
+@keyframes logo-shine {
+  0% {
+    background-position: -160% 0;
+  }
+  100% {
+    background-position: 160% 0;
+  }
+}
+.anim-logo-in {
+  animation: logo-in 1.15s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+}
+@keyframes logo-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.72) translateY(16px);
+    filter: blur(7px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+.anim-tagline-in {
+  animation: tagline-in 1.6s 0.7s ease-out both;
+}
+@keyframes tagline-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Rolling end credits: two stacked bodies scroll up seamlessly. */
+@keyframes credits-roll {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+.credits-roll {
+  animation: credits-roll 36s linear infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .credits-roll { animation-duration: 60s; }
+}
