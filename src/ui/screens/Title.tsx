@@ -1,8 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ASSETS } from "../../game/assets";
+import { audio } from "../audio";
 import { useGame } from "../GameProvider";
 import { SettingsToggles } from "../overlays/Overlays";
 import { AnimSprite, Backdrop, Frame, Modal, PixelButton, Sprite } from "../components/Pixel";
+
+/** One-time branded boot: logo zooms in with a shine sweep and intro sting, click to skip. */
+function IntroSplash() {
+  const [gone, setGone] = useState(() => {
+    try {
+      return globalThis.localStorage?.getItem("revo.intro.v1") === "1";
+    } catch {
+      return false;
+    }
+  });
+  const finish = () => {
+    try {
+      globalThis.localStorage?.setItem("revo.intro.v1", "1");
+    } catch {
+      // ignore
+    }
+    setGone(true);
+  };
+  useEffect(() => {
+    if (gone) return;
+    audio.sfx("intro_sting");
+    const t = setTimeout(finish, 4600);
+    return () => clearTimeout(t);
+  }, [gone]);
+  if (gone) return null;
+  return (
+    <div
+      className="absolute inset-0 z-[90] flex flex-col items-center justify-center bg-black anim-fade-in cursor-pointer"
+      onClick={finish}
+      role="button"
+      aria-label="Skip intro"
+    >
+      <div className="logo-sweep anim-logo-in">
+        <img src={ASSETS.logo} alt="REVO" className="h-[220px] w-auto drop-shadow-[0_0_28px_rgba(242,107,28,0.35)]" />
+      </div>
+      <div className="font-pixel text-[15px] text-ink px-text-shadow mt-8 anim-tagline-in">
+        MARS COLONY SURVIVAL
+      </div>
+      <div className="font-pixel text-[9px] text-muted mt-16 anim-blink">CLICK TO SKIP</div>
+    </div>
+  );
+}
 
 export function Title() {
   const { saved, startNew, continueSave, setOverlay, corruptSave } = useGame();
@@ -13,8 +56,12 @@ export function Title() {
     <div className="absolute inset-0">
       <Backdrop dim={0.35} overlay="dark" />
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-        <div className="font-pixel text-[88px] leading-none text-orange px-logo tracking-[8px]">
-          REVO
+        <div className="logo-sweep anim-logo-in">
+          <img
+            src={ASSETS.logo}
+            alt="REVO"
+            className="h-[128px] w-auto drop-shadow-[0_0_22px_rgba(242,107,28,0.30)]"
+          />
         </div>
         <div className="font-pixel text-[16px] text-ink px-text-shadow">MARS COLONY SURVIVAL</div>
         <div className="font-pixel text-[10px] text-cyan px-text-shadow">
@@ -73,6 +120,7 @@ export function Title() {
           <PixelButton onClick={() => setNotice(false)}>OK</PixelButton>
         </Modal>
       ) : null}
+      <IntroSplash />
     </div>
   );
 }
