@@ -17,6 +17,7 @@ export const ASSETS = {
   droneScan: asset("drone/d004.png"),
   droneBeam: asset("drone/d005.png"),
   logo: asset("logo/revo-logo.png"),
+  introVideo: asset("video/intro_cutscene.mp4"),
   tiles: {
     flat: asset("tiles/flat.png"),
     flat2: asset("tiles/flat2.png"),

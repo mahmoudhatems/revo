@@ -112,6 +112,22 @@ export const audio = {
     }
     fadeTo(windEl, want, 900);
   },
+  /** Silence music + wind while a video cutscene owns the screen. */
+  pauseAmbient() {
+    if (musicEl && !musicEl.paused) {
+      const m = musicEl;
+      fadeTo(m, 0, 350, () => m.pause());
+    }
+    if (windEl && !windEl.paused) {
+      const w = windEl;
+      fadeTo(w, 0, 350, () => w.pause());
+    }
+  },
+  /** Bring music + wind back after a cutscene (respects the gesture gate). */
+  resumeAmbient() {
+    if (wantTrack && unlocked && (!musicEl || musicEl.paused)) startMusic(wantTrack);
+    if (windWant > 0.02 && unlocked) audio.setWind(windWant);
+  },
   /** Switch the background loop; before the first gesture it defers (autoplay policy). */
   setMusic(name: MusicTrack) {
     wantTrack = name;
