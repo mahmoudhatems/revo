@@ -132,7 +132,7 @@ Expected time: 5 minutes to the crisis, 20 minutes for a full 30-sol run.
 
 ## 7. Verification notes
 
-- Tested browsers: Chrome 130+, Edge 130+, Safari 18 (desktop), iPad Safari (tablet viewport).
+- Tested so far: Chromium (Chrome/Edge) at 1280×960 and 1440×900, plus the responsive tablet viewport. Safari on macOS/iPad is **not yet verified** — it is on the pre-submission list, and any known gap will be listed here rather than hidden.
 - Automated: 57 unit tests, type-check clean, deterministic engine (seeded crisis outcomes for the storm scenario).
 - Evidence kept in the repository: `tests/` (test suite), `docs/AUDIO_PROVENANCE.md` (voice provenance), `docs/CREDITS.md` (source list), commit history of the deployed branch.
 - The deployed build is the branch `feat/intro-cutscene`, commit recorded in the deployment metadata on Vercel.
