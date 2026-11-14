@@ -126,7 +126,7 @@ Tick both boxes (Terms and Conditions; Confirm All Work is Original). Every outs
 |---|---|
 | Team name | Slide 1 and 7 — “TEAM REVO” |
 | Names of team members | Slide 1 and 7 — five names |
-| Challenge selected | Slide 1 — “Challenge 03 · Build a Junior Astronaut Mission Trainer” |
+| Challenge selected | Slide 1 — “Challenge · Build a Junior Astronaut Mission Trainer” |
 | Display an image of the project | Slides 3 and 4 — live captures of the build |
 | Describe the user experience | Slide 4 — brief → choose a path → keep the proof, plus the 60-second task |
 | How NASA / partner open data and technology make it possible | Slide 5 (data → meters) and slide 6 (stack + what SI did) |
