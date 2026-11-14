@@ -167,7 +167,7 @@ export function DustStorm({ level, onGust, onLevel }: StormProps) {
         gustUntil = now + 950;
         nextGust = now + rnd(2200, 6200) / Math.max(0.3, cur);
         const hard = Math.random() < 0.35;
-        shake = hard ? 4 : 2.2;
+        shake = hard ? 2.2 : 1.3;
         cb.current.onGust?.(hard);
         for (let i = 0; i < (hard ? 3 : 2); i++)
           gusts.push({ alive: true, x: rnd(-350, 150), y: rnd(30, 500), vx: rnd(420, 640), vy: 0, s: rnd(0.9, 1.6), a: 1, ph: 0, t0: now, kind: 0 });

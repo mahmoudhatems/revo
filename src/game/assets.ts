@@ -18,6 +18,8 @@ export const ASSETS = {
   droneBeam: asset("drone/d005.png"),
   logo: asset("logo/revo-logo.png"),
   introVideo: asset("video/intro_cutscene.mp4"),
+  logoWhite: asset("logo/revo-white.png"),
+  nasaLogo: asset("logo/nasa.png"),
   tiles: {
     flat: asset("tiles/flat.png"),
     flat2: asset("tiles/flat2.png"),

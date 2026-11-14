@@ -5,6 +5,7 @@ import { useGame } from "../GameProvider";
 import { SettingsToggles } from "../overlays/Overlays";
 import { AnimSprite, Backdrop, Frame, Modal, PixelButton, Sprite } from "../components/Pixel";
 import { IntroCutscene } from "./IntroCutscene";
+import { Credits } from "../components/Credits";
 
 const lsGet = (k: string) => {
   try {
@@ -29,6 +30,7 @@ export function Title() {
   const { saved, startNew, continueSave, setOverlay, corruptSave } = useGame();
   const [confirm, setConfirm] = useState(false);
   const [notice, setNotice] = useState(corruptSave);
+  const [credits, setCredits] = useState(false);
   const [stage, setStage] = useState<Stage>(() =>
     lsGet("revo.intro.v1") === "1" ? afterSplash() : "splash",
   );
@@ -89,6 +91,9 @@ export function Title() {
             <PixelButton className="flex-1" variant="ghost" icon="info" onClick={() => setStage("cut")}>
               WATCH INTRO
             </PixelButton>
+            <PixelButton className="flex-1" variant="ghost" icon="starG" onClick={() => setCredits(true)}>
+              CREDITS
+            </PixelButton>
           </div>
           <SettingsToggles />
         </Frame>
@@ -119,6 +124,7 @@ export function Title() {
         </div>
       ) : null}
       {stage === "cut" ? <IntroCutscene onDone={finishCut} /> : null}
+      {credits ? <Credits onClose={() => setCredits(false)} /> : null}
       {confirm ? (
         <Modal label="Start a new game" onClose={() => setConfirm(false)} width={560}>
           <div className="font-pixel text-[14px] text-orange mb-4">START OVER?</div>

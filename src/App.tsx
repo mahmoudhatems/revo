@@ -78,18 +78,18 @@ function Game() {
     if (STEP_ORDER[state.stepIndex] !== "c1") return 0;
     switch (state.screen) {
       case "briefing":
-        return 0.35; // Phase A - approaching
+        return 0.3; // Phase A - approaching
       case "decision":
       case "install":
-        return 0.8; // Phase B - full storm around the solar station
+        return 0.65; // Phase B - full storm around the solar station
       case "result":
         // peak while N.E.I.L. reacts; the chosen path shapes how the storm reads.
         // Hibernation = darker/heavier, Robot Sweep = storm losing its grip.
-        return state.lastChoice === "fullops" ? 1 : state.lastChoice === "clean" ? 0.85 : 0.95;
+        return state.lastChoice === "fullops" ? 0.85 : state.lastChoice === "clean" ? 0.75 : 0.8;
       case "sleep":
-        return 0.45; // night under the storm
+        return 0.35; // night under the storm
       case "hub":
-        return 0.65; // storm days outside between actions
+        return 0.5; // storm days outside between actions
       default:
         return 0; // Phase C - the eased drop back to 0 is the clearing
     }

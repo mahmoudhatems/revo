@@ -3,7 +3,7 @@
 // tools/audio (see tools/audio/README.md). Everything degrades to silence on failure.
 import { asset } from "../game/assets";
 
-const VOL = { music: 0.3, sfx: 0.55 };
+const VOL = { music: 0.22, sfx: 0.42 };
 export type MusicTrack = "colony" | "mission" | "crisis" | "rover";
 
 const sfxPool = new Map<string, HTMLAudioElement[]>();
@@ -20,7 +20,7 @@ function targetVolume() {
   return ducked ? VOL.music * 0.12 : VOL.music;
 }
 function windVolume() {
-  return Math.min(1, windWant * (ducked ? 0.3 : 1) * 0.55);
+  return Math.min(1, windWant * (ducked ? 0.3 : 1) * 0.4);
 }
 
 function fadeTo(el: HTMLAudioElement, to: number, ms: number, then?: () => void) {

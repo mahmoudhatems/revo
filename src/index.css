@@ -538,3 +538,16 @@
     transform: translateY(0);
   }
 }
+
+/* Rolling end credits: two stacked bodies scroll up seamlessly. */
+@keyframes credits-roll {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+.credits-roll {
+  animation: credits-roll 36s linear infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .credits-roll { animation-duration: 60s; }
+}
